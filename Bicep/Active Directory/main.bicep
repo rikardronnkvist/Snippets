@@ -176,7 +176,6 @@ resource virtualMachineResource 'Microsoft.Compute/virtualMachines@2020-06-01' =
   ]
 }
 
-
 resource virtualMachineResourceCreateDomain 'Microsoft.Compute/virtualMachines/extensions@2018-06-01' = {
   name: '${virtualMachineResourceName}/CreateDomain'
   location: location
@@ -194,6 +193,26 @@ resource virtualMachineResourceCreateDomain 'Microsoft.Compute/virtualMachines/e
   }
   dependsOn: [
     virtualMachineResource
+  ]
+}
+
+resource virtualMachineResourceCreateADStructure 'Microsoft.Compute/virtualMachines/extensions@2018-06-01' = {
+  name: '${virtualMachineResourceName}/CreateADStructure'
+  location: location
+  properties: {
+    publisher: 'Microsoft.Compute'
+    type: 'CustomScriptExtension'
+    typeHandlerVersion: '1.10'
+    autoUpgradeMinorVersion: true
+    protectedSettings: {
+      fileUris: [
+        'https://raw.githubusercontent.com/rirofal/Snippets/main/Bicep/Active%20Directory/createAdStructure.ps1'
+      ]
+      commandToExecute: 'powershell.exe -ExecutionPolicy Unrestricted -File createAdStructure.ps1'
+    }
+  }
+  dependsOn: [
+    virtualMachineResourceCreateDomain
   ]
 }
 
