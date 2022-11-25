@@ -1,8 +1,8 @@
 [CmdLetbinding()]
 PARAM (
     [String] $SafeModePassword,
-    [String] $DomainName = "demo.local",
-    [String] $DomainNetbiosName = "DEMO"
+    [String] $DomainName,
+    [String] $DomainNetbiosName
 )
 
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools

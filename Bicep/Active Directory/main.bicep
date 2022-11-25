@@ -177,24 +177,24 @@ resource virtualMachineResource 'Microsoft.Compute/virtualMachines@2020-06-01' =
 }
 
 
-resource virtualMachineResourceCreateDomain 'Microsoft.Compute/virtualMachines/extensions@2020-06-01' = {
-  parent: virtualMachineResource
-  name: 'CreateDomain'
+resource virtualMachineResourceCreateDomain 'Microsoft.Compute/virtualMachines/extensions@2018-06-01' = {
+  name: '${virtualMachineResourceName}/CreateDomain'
   location: location
   properties: {
     publisher: 'Microsoft.Compute'
     type: 'CustomScriptExtension'
-    typeHandlerVersion: '2.1'
+    typeHandlerVersion: '1.10'
     autoUpgradeMinorVersion: true
-    settings: {
+    protectedSettings: {
       fileUris: [
         'https://raw.githubusercontent.com/rirofal/Snippets/main/Bicep/Active%20Directory/createdomain.ps1'
       ]
-    }
-    protectedSettings: {
       commandToExecute: 'powershell.exe -ExecutionPolicy Unrestricted -File createdomain.ps1 -SafeModePassword ${onpremAdAdminPassword} -DomainName ${onpremAdDomainName} -DomainNetbiosName ${onpremAdDomainNetbiosName}'
     }
   }
+  dependsOn: [
+    virtualMachineResource
+  ]
 }
 
 output VMName string = virtualMachineResourceName
