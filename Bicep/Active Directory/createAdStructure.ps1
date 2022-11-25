@@ -4,7 +4,6 @@ Function DelegateFullControl {
         $GroupSID,
         $ouDN
     )
-    Write-Host $ouDN
     $ouACL = Get-Acl -Path "AD:$($ouDN)"
     
     $Identity = [System.Security.Principal.IdentityReference] ([System.Security.Principal.SecurityIdentifier] $GroupSID)
@@ -13,8 +12,8 @@ Function DelegateFullControl {
     $InheritanceType = [System.DirectoryServices.ActiveDirectorySecurityInheritance] "All"
     $Rule = New-Object System.DirectoryServices.ActiveDirectoryAccessRule($Identity, $ADRight, $Type,  $InheritanceType)
     
-    $ACL.AddAccessRule($Rule)
-    Set-Acl -Path "AD:$($ouDN)" -AclObject $ouACL
+    $ouACL.AddAccessRule($Rule)
+    Set-Acl -Path "AD:$($ouDN)" -AclObject $ouACL | Out-Null
 }
 
 Function CreateDemoGPO {
@@ -24,7 +23,7 @@ Function CreateDemoGPO {
     )
 
     $gpo = New-GPO -Name $gpoName
-    New-GPLink -Guid $gpo.Id -Target $linkOU
+    New-GPLink -Guid $gpo.Id -Target $linkOU | Out-Null
 }
 
 Function CreateDemoGroups {
@@ -34,15 +33,15 @@ Function CreateDemoGroups {
 
     $group = New-ADGroup "Users - $($StartNo)00-$($StartNo)99" -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
     $members = Get-AdObject -LdapFilter "(samAccountName=user.no$($StartNo)*)"
-    Add-ADGroupMember -Identity $group -Members $members
+    Add-ADGroupMember -Identity $group -Members $members | Out-Null
 
     $group = New-ADGroup "Computers - $($StartNo)00-$($StartNo)99" -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
     $members = Get-AdObject -LdapFilter "(samAccountName=DEMOCOMP$($StartNo)*)"
-    Add-ADGroupMember -Identity $group -Members $members
+    Add-ADGroupMember -Identity $group -Members $members | Out-Null
 
     $group = New-ADGroup "Servers - $($StartNo)00-$($StartNo)99" -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
     $members = Get-AdObject -LdapFilter "(samAccountName=SERVER$($StartNo)*)"
-    Add-ADGroupMember -Identity $group -Members $members
+    Add-ADGroupMember -Identity $group -Members $members | Out-Null
 }
 
 Function CreateRandomDemoGroups {
