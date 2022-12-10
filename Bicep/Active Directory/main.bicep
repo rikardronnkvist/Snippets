@@ -186,7 +186,7 @@ resource virtualMachineResourceCreateDomain 'Microsoft.Compute/virtualMachines/e
     autoUpgradeMinorVersion: true
     protectedSettings: {
       fileUris: [
-        'https://raw.githubusercontent.com/rirofal/Snippets/main/Bicep/Active%20Directory/createdomain.ps1'
+        'https://raw.githubusercontent.com/rikardronnkvist/Snippets/main/Bicep/Active%20Directory/createdomain.ps1'
       ]
       commandToExecute: 'powershell.exe -ExecutionPolicy Unrestricted -File createdomain.ps1 -SafeModePassword ${onpremAdAdminPassword} -DomainName ${onpremAdDomainName} -DomainNetbiosName ${onpremAdDomainNetbiosName}'
     }
