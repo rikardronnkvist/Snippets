@@ -69,11 +69,11 @@ $ouServers   = New-ADOrganizationalUnit -Name "Servers"   -Path $ouBase -PassThr
 $ouUsers     = New-ADOrganizationalUnit -Name "Users"     -Path $ouBase -PassThru
 
 Write-Host "Delegate admin groups"
-$adminAdmins    = New-ADGroup "Dekegation_Admins_FullControl"    -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
-$adminComputers = New-ADGroup "Dekegation_Computers_FullControl" -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
-$adminGroups    = New-ADGroup "Dekegation_Groups_FullControl"    -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
-$adminServers   = New-ADGroup "Dekegation_Servers_FullControl"   -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
-$adminUsers     = New-ADGroup "Dekegation_Users_FullControl"     -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
+$adminAdmins    = New-ADGroup "Delegation_Admins_FullControl"    -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
+$adminComputers = New-ADGroup "Delegation_Computers_FullControl" -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
+$adminGroups    = New-ADGroup "Delegation_Groups_FullControl"    -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
+$adminServers   = New-ADGroup "Delegation_Servers_FullControl"   -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
+$adminUsers     = New-ADGroup "Delegation_Users_FullControl"     -path $ouGroups.DistinguishedName -GroupScope DomainLocal -PassThru
 
 Write-Host "Delegate OU control"
 DelegateFullControl -groupSid $adminAdmins.SID -ouDN $ouAdmins.DistinguishedName
