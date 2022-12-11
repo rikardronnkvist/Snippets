@@ -7,6 +7,7 @@ Two versions exported, one with just the [createAdStructure.ps1](../Bicep/Active
 Shortest path from **user.no110** to **Domain Admin**
 
 ![Demo](./demo.png?raw=true)
+
 FYI: There are a few more flaws but it's up to you to find them.
 
 ## Export log
