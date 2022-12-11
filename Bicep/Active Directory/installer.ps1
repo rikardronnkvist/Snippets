@@ -35,7 +35,7 @@ $commandSettings = @{
     ResourceGroupName = $ResoureceGroupName
     VMName = $vmResourceName
     CommandId = 'RunPowerShellScript'
-    ScriptPath = "$PWD\createAdStructure.ps1"
+    ScriptPath = Join-Path (Get-Location).Path "createAdStructure.ps1"
 }
 Invoke-AzVMRunCommand @commandSettings
 
