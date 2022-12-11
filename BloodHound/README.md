@@ -3,6 +3,11 @@ Exported with [SharpHound](https://github.com/BloodHoundAD/SharpHound)
 
 Two versions exported, one with just the [createAdStructure.ps1](../Bicep/Active%20Directory/createAdStructure.ps1) script completed and one with some security flaws.
 
+## Demo
+Shortest path from **user.no110** to **Domain Admin**
+
+![Demo](./demo.png?raw=true)
+FYI: There are a few more flaws but it's up to you to find them.
 
 ## Export log
 ```
@@ -28,8 +33,3 @@ Closing writers
 2022-12-11T05:21:15.1287850+00:00|INFORMATION|SharpHound Enumeration Completed at 5:21 AM on 12/11/2022! Happy Graphing!
 PS C:\Tools\SharpHound-v1.1.0>
 ```
-
-## Demo
-Shortest path from **user.no110** to **Domain Admin**
-
-![Demo](./demo.png?raw=true)
