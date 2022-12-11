@@ -1,7 +1,8 @@
 # BloodHound Data from the domain
 Exported with [SharpHound](https://github.com/BloodHoundAD/SharpHound)
 
-Two versions exported, one with just the createAdStructure.ps1 script completed and one with some security flaws.
+Two versions exported, one with just the [createAdStructure.ps1](../Bicep/Active%20Directory/createAdStructure.ps1) script completed and one with some security flaws.
+
 
 ## Export log
 ```
