@@ -1,15 +1,8 @@
 # iPhone Automations
 
 ## Sleep on/off with charger
-Import two shortcuts
-* [On-slleep-late-at-night.shortcut](./On-sleep-late-at-night.shortcut?raw=true)
-* [Off-sleep-in-the-morning.shortcut](./Off-sleep-in-the-morning.shortcut?raw=true)
+Import one shortcuts [On-Off_sleep_depending_on_time.shortcut](./On-Off_sleep_depending_on_time.shortcut?raw=true)
 
-Create two automations, one that triggers when you attach the charger and one when you unplugg it.
+Create an automations that triggers when you attach or unplugg your charger.
 
-![list](./automations-list.png?raw=true)
-
-
-The automations should only run the imported shortcuts
-
-![example](./automations-example.png?raw=true)
+![automation](./sleep-charger-automation.png?raw=true)
