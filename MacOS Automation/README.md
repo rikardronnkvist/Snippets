@@ -16,7 +16,7 @@ Create automation that runs when a display is connected or disconnected
 
 ### System
 
-You might need to allow AEServer to control your computer under System Settings > Privacy & Security > Accessibility:
+You might need to allow AEServer to control your computer under System Settings > Privacy & Security > Accessibility
 
 
 ## Alternative
