@@ -8,13 +8,13 @@ When more than one display is connected, the dock will be visible. If only one (
 
 Create a shortcut with the contents of the bash-script
 
-![Shortcut](shortcut.png)
+![Shortcut](./shortcut.png?raw=true)
 
 ### Automation
 
 Create automation that runs the script when a display is connected or disconnected
 
-![Dock monitor automation](automation.png)
+![Dock monitor automation](./automation.png?raw=true)
 
 ### System
 
