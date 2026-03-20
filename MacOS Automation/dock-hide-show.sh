@@ -7,8 +7,6 @@ if [ "$display_count" -eq 0 ]; then
   display_count=$(system_profiler SPDisplaysDataType 2>/dev/null | grep -c "Display Type")
 fi
 
-echo "Active displays: $display_count"
-
 current_hide=$(defaults read com.apple.dock autohide 2>/dev/null || echo "0")
 
 if [ "$display_count" -eq 1 ]; then
