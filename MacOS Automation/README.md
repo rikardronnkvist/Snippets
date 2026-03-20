@@ -16,5 +16,7 @@ Create automation that runs when a display is connected or disconnected
 
 
 ## Alternative
-Load with `launchctl load ~/Library/LaunchAgents/com.user.dockmonitor.plist`.
+
+Load with `launchctl load ~/Library/LaunchAgents/com.user.dockmonitor.plist`
+
 It runs every 10 seconds.
