@@ -1,0 +1,33 @@
+// Will loop thru all members of groups matching GroupNameFilter and see last date they used the ApplicationID
+let ApplicationID = "12312312-1234-1234-1234-123123123123";
+let GroupNameFilter = "-CiscoVPN";
+let Lookback = 90d;
+IdentityInfo
+| summarize arg_max(TimeGenerated, *) by AccountUpn
+| mv-expand gm = todynamic(GroupMembership)
+| where tostring(gm) has GroupNameFilter
+| summarize
+    Groups        = make_set(tostring(gm), 100),
+    DisplayName   = any(AccountDisplayName),
+    AccountName   = any(AccountName),
+    AccountDomain = any(AccountDomain)
+  by AccountUpn = tostring(AccountUpn)
+| join kind=leftouter (
+    SigninLogs
+        | where TimeGenerated >= ago(Lookback)
+        | where AppId == ApplicationID
+        | summarize LastApplicationUse = max(TimeGenerated) by AccountUpn = tostring(UserPrincipalName)
+    ) on AccountUpn
+| extend
+    UsageState       = iff(isnull(LastApplicationUse), "Never seen in sign-in logs (within lookback)", "Used"),
+    DaysSinceLastUse = iff(isnull(LastApplicationUse), long(null), datetime_diff("day", now(), LastApplicationUse))
+| project
+    AccountUpn,
+    DisplayName,
+    AccountName,
+    AccountDomain,
+    Groups,
+    UsageState,
+    LastApplicationUse,
+    DaysSinceLastUse
+| order by UsageState desc, LastApplicationUse asc
