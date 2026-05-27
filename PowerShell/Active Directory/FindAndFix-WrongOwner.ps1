@@ -1,6 +1,6 @@
 [CmdletBinding(SupportsShouldProcess = $true, ConfirmImpact = 'Medium')]
 param(
-    [string]$domainName = "HERENCO",
+    [string]$domainName = "ABC",
     [string[]]$IncludedObjectTypes = @(
         "user",
         "group",
@@ -8,11 +8,11 @@ param(
         "organizationalUnit"
     ),
     [string[]]$searchOUs = @(
-        "OU=Admin,DC=herenco,DC=se",
-        "OU=Company,DC=herenco,DC=se",
-        "OU=Autopilot_Computers,DC=herenco,DC=se",
-        "OU=Domain Controllers,DC=herenco,DC=se",
-        "OU=HerencoDisabledObjects,DC=herenco,DC=se"
+        "OU=Admin,DC=abc,DC=se",
+        "OU=Company,DC=abc,DC=se",
+        "OU=Autopilot_Computers,DC=abc,DC=se",
+        "OU=Domain Controllers,DC=abc,DC=se",
+        "OU=DisabledObjects,DC=abc,DC=se"
     ),
     $exportPath = ".\changedObjects.csv"
 )
